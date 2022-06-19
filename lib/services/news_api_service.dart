@@ -21,5 +21,4 @@ class NewsApiService extends NewsApi {
     final uri = Uri.parse("$baseUrl/everything?q=$query");
     return await http.get(uri, headers: {"X-Api-Key": apiKey});
   }
-
 }
