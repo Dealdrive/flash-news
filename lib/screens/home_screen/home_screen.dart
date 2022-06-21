@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/bloc/news_bloc.dart';
+import 'package:news_app/bloc/news_event.dart';
 import 'package:news_app/bloc/news_state.dart';
 import 'package:news_app/models/article.dart';
+import 'package:news_app/screens/home_screen/widgets/nav_drawer.dart';
 
 import 'widgets/news_item_card.dart';
 
@@ -14,6 +16,13 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: NavDrawer(
+          onTap: (country) {
+            context.read<NewsBloc>().add(
+                  LoadTopHeadlinesForCountryEvent(country: country),
+                );
+          },
+        ),
         appBar: AppBar(
           backgroundColor: Theme.of(context).primaryColor,
           title: const Text("Top Headlines"),
@@ -36,5 +45,3 @@ class HomeScreen extends StatelessWidget {
         ));
   }
 }
-
-

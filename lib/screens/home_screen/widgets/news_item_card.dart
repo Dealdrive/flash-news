@@ -29,6 +29,7 @@ class NewsItemCard extends StatelessWidget {
                   padding: const EdgeInsets.all(10.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         article.title ?? "",
@@ -64,6 +65,9 @@ class NewsItemCard extends StatelessWidget {
                   } else {
                     return child;
                   }
+                },
+                errorBuilder: (context, object, error) {
+                  return SizedBox.shrink();
                 },
               )
             ],
