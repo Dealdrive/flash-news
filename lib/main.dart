@@ -15,20 +15,19 @@ void main() async {
     RepositoryProvider(
       create: (context) => NewsApiService(),
       child: BlocProvider(
-        create: (context) =>
-        NewsBloc(context.read<NewsApiService>())
-          ..add(const LoadTopHeadlinesForCountryEvent(country: "NG"),),
+        create: (context) => NewsBloc(context.read<NewsApiService>())
+          ..add(
+            const LoadTopHeadlinesForCountryEvent(country: "US"),
+          ),
         child: MaterialApp(
           onGenerateRoute: AppRoute.onGenerateRoute,
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-              primaryColor: Colors.redAccent,
-              colorScheme: ThemeData
-                  .light()
-                  .colorScheme
-                  .copyWith(
+            primaryColor: Colors.redAccent,
+            colorScheme: ThemeData.light().colorScheme.copyWith(
                 //secondary:
-              )
+                ),
+            backgroundColor: const Color(0xFFF9F9F9),
           ),
           initialRoute: HomeScreen.routeName,
         ),
@@ -36,6 +35,3 @@ void main() async {
     ),
   );
 }
-
-
-

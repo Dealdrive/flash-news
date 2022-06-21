@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/bloc/news_bloc.dart';
 import 'package:news_app/bloc/news_state.dart';
+import 'package:news_app/models/article.dart';
+
+import 'widgets/news_item_card.dart';
 
 class HomeScreen extends StatelessWidget {
   static const String routeName = "/";
@@ -12,7 +15,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Home"),
+          backgroundColor: Theme.of(context).primaryColor,
+          title: const Text("Top Headlines"),
         ),
         body: BlocBuilder<NewsBloc, NewsState>(
           builder: (context, state) {
@@ -20,14 +24,11 @@ class HomeScreen extends StatelessWidget {
               loading: () => const Center(child: CircularProgressIndicator()),
               success: (articles) {
                 return ListView.builder(
-                  itemCount: articles.length,
+                    itemCount: articles.length,
                     itemBuilder: (context, index) {
-                  final article = articles[index];
-                  return ListTile(
-                    title: Text(article.title ?? ""),
-                    subtitle: Text(article.author ?? ""),
-                  );
-                });
+                      final article = articles[index];
+                      return NewsItemCard(article: article);
+                    });
               },
               error: (errorMessage) => Text(errorMessage ?? "Error occurred!"),
             );
@@ -35,3 +36,5 @@ class HomeScreen extends StatelessWidget {
         ));
   }
 }
+
+

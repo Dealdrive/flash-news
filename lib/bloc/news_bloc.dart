@@ -31,17 +31,17 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
         final result = response.body;
         final jsonResult = json.decode(result) as Map<String, dynamic>;
         final articleList = jsonResult["articles"] as List<dynamic>;
-        final articles = articleList.map(
-          (item) => Article.fromJson(item),
-        ).toList();
+        final articles = articleList
+            .map(
+              (item) => Article.fromJson(item),
+            )
+            .toList();
         emit(NewsState.success(articles));
       } else {
         emit(NewsState.error(response.body));
       }
-    }
-    catch (e) {
+    } catch (e) {
       emit(const NewsState.error("Error occurred"));
-      rethrow;
     }
   }
 
