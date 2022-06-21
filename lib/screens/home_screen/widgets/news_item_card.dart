@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/models/article.dart';
 
-
 class NewsItemCard extends StatelessWidget {
   const NewsItemCard({
     Key? key,
@@ -17,9 +16,12 @@ class NewsItemCard extends StatelessWidget {
       height: 120,
       child: Card(
           elevation: 2.0,
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(6.0),
+          ),
           color: Colors.white,
-          margin: const EdgeInsets.symmetric(
-              horizontal: 10, vertical: 5),
+          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
           child: Row(
             children: [
               Expanded(
@@ -34,17 +36,14 @@ class NewsItemCard extends StatelessWidget {
                         maxLines: 3,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold
-                        ),
+                            fontSize: 16, fontWeight: FontWeight.bold),
                       ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 10),
                       Text(
                         article.source.name ?? "",
                         style: TextStyle(
                             fontSize: 12,
-                            color: Theme.of(context).primaryColor
-                        ),
+                            color: Theme.of(context).primaryColor),
                       ),
                     ],
                   ),
@@ -55,6 +54,17 @@ class NewsItemCard extends StatelessWidget {
                 fit: BoxFit.cover,
                 width: 120,
                 height: 120,
+                frameBuilder: (context, child, frame, _) {
+                  if (frame == null) {
+                    return Container(
+                      color: Colors.grey.shade300,
+                      width: 120,
+                      height: 120,
+                    );
+                  } else {
+                    return child;
+                  }
+                },
               )
             ],
           )),
