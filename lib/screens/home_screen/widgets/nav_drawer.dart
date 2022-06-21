@@ -58,10 +58,8 @@ class NavDrawer extends StatelessWidget {
                 _countryItem(context, "ng", "Nigeria", onTap),
                 _countryItem(context, "gb", "United Kingdom", onTap),
                 _countryItem(context, "us", "United States", onTap),
-                _countryItem(context, "cn", "China", onTap),
-                _countryItem(context, "fr", "France", onTap),
                 _countryItem(context, "in", "India", onTap),
-                _countryItem(context, "ru", "Russia", onTap),
+                _countryItem(context, "za", "South Africa", onTap),
               ],
             ),
           )

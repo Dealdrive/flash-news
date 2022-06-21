@@ -40,11 +40,18 @@ class NewsItemCard extends StatelessWidget {
                             fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 10),
-                      Text(
-                        article.source.name ?? "",
-                        style: TextStyle(
-                            fontSize: 12,
-                            color: Theme.of(context).primaryColor),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).primaryColor,
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        padding: const EdgeInsets.all(4),
+                        child: Text(
+                          article.source.name ?? "",
+                          style: const TextStyle(
+                              fontSize: 12,
+                              color: Colors.white,),
+                        ),
                       ),
                     ],
                   ),
