@@ -40,7 +40,7 @@ class HomeScreen extends StatelessWidget {
         body: Column(
           children: [
             SizedBox(
-              height: 70,
+              height: 60,
               child: ListView(
                   scrollDirection: Axis.horizontal,
                   padding: const EdgeInsets.only(left: 8),
@@ -57,7 +57,7 @@ class HomeScreen extends StatelessWidget {
                         pressElevation: 10.0,
                         padding:
                             const EdgeInsets.only(left: 2, top: 2, bottom: 2),
-                        elevation: category.name == "Sports" ? 5.0 : 0.0,
+                        elevation: 5.0,
                         backgroundColor:  category.backgroundColor,
                         avatar: CircleAvatar(
                           backgroundColor: Colors.white.withOpacity(0.8),

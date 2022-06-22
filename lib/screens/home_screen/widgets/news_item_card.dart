@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/models/article.dart';
 
@@ -49,32 +50,29 @@ class NewsItemCard extends StatelessWidget {
                         child: Text(
                           article.source.name ?? "",
                           style: const TextStyle(
-                              fontSize: 12,
-                              color: Colors.white,),
+                            fontSize: 12,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
               ),
-              Image.network(
-                article.imageUrl ?? "",
+              CachedNetworkImage(
+                imageUrl: article.imageUrl ?? "",
                 fit: BoxFit.cover,
                 width: 120,
                 height: 120,
-                frameBuilder: (context, child, frame, _) {
-                  if (frame == null) {
-                    return Container(
-                      color: Colors.grey.shade300,
-                      width: 120,
-                      height: 120,
-                    );
-                  } else {
-                    return child;
-                  }
+                placeholder: (context, url) {
+                  return Container(
+                    color: Colors.grey.shade300,
+                    width: 120,
+                    height: 120,
+                  );
                 },
-                errorBuilder: (context, object, error) {
-                  return SizedBox.shrink();
+                errorWidget: (context, url, error) {
+                  return const SizedBox.shrink();
                 },
               )
             ],
