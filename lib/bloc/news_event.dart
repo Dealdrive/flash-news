@@ -5,26 +5,26 @@ abstract class NewsEvent {
   const NewsEvent();
 }
 
-
-class LoadingEvent extends NewsEvent {
-
-}
+class LoadingEvent extends NewsEvent {}
 
 class LoadTopHeadlinesForCountryEvent extends NewsEvent {
+  final String countryCode;
 
-  final String country;
-  const LoadTopHeadlinesForCountryEvent({required this.country});
+  const LoadTopHeadlinesForCountryEvent({required this.countryCode});
 }
 
 class LoadTopHeadlinesForCategoryEvent extends NewsEvent {
-
   final String category;
-  final String country;
-  const LoadTopHeadlinesForCategoryEvent({required this.category, required this.country});
+  final String countryCode;
+
+  const LoadTopHeadlinesForCategoryEvent({
+    required this.category,
+    required this.countryCode,
+  });
 }
 
 class SearchNewsEvent extends NewsEvent {
-
   final String query;
+
   const SearchNewsEvent({required this.query});
 }

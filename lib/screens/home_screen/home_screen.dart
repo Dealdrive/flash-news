@@ -4,7 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:news_app/bloc/news_bloc.dart';
 import 'package:news_app/bloc/news_event.dart';
 import 'package:news_app/bloc/news_state.dart';
-import 'package:news_app/models/article.dart';
+import 'package:news_app/models/country.dart';
 import 'package:news_app/screens/home_screen/widgets/nav_drawer.dart';
 
 import '../../models/category.dart';
@@ -19,22 +19,20 @@ class HomeScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final selectedCategory = useState(Category.categories[0]);
-    final selectedCountry = useState("United States");
-    final selectedCountryCode = useState("us");
+    final selectedCountry = useState(Country.countries[0]);
     return Scaffold(
         drawer: NavDrawer(
-          onTap: (countryCode, countryName) {
-            selectedCountry.value = countryName;
-            selectedCountryCode.value = countryCode;
+          onTap: (country) {
+            selectedCountry.value = country;
             if(selectedCategory.value == Category.categories[0]) {
               context.read<NewsBloc>().add(
-                LoadTopHeadlinesForCountryEvent(country: countryCode),
+                LoadTopHeadlinesForCountryEvent(countryCode: country.code),
               );
             } else {
               context.read<NewsBloc>().add(
                 LoadTopHeadlinesForCategoryEvent(
                   category: selectedCategory.value.id,
-                  country: countryCode,
+                  countryCode: country.code,
                 ),
               );
             }
@@ -58,7 +56,7 @@ class HomeScreen extends HookWidget {
           children: [
             CategoryChips(
               selectedCategory: selectedCategory,
-              country: selectedCountryCode.value,
+              countryCode: selectedCountry.value.code,
             ),
             Expanded(
               child: BlocBuilder<NewsBloc, NewsState>(

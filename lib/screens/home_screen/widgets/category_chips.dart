@@ -5,12 +5,14 @@ import 'package:news_app/bloc/news_event.dart';
 import 'package:news_app/models/category.dart';
 
 class CategoryChips extends StatelessWidget {
-  const CategoryChips(
-      {Key? key, required this.selectedCategory, required this.country})
-      : super(key: key);
+  const CategoryChips({
+    Key? key,
+    required this.selectedCategory,
+    required this.countryCode,
+  }) : super(key: key);
 
   final ValueNotifier<Category> selectedCategory;
-  final String country;
+  final String countryCode;
 
   @override
   Widget build(BuildContext context) {
@@ -46,21 +48,20 @@ class CategoryChips extends StatelessWidget {
                 ),
                 onPressed: () {
                   selectedCategory.value = category;
-                  if(category == Category.categories[0]) {
+                  if (category == Category.categories[0]) {
                     context.read<NewsBloc>().add(
-                      LoadTopHeadlinesForCountryEvent(
-                        country: country,
-                      ),
-                    );
+                          LoadTopHeadlinesForCountryEvent(
+                            countryCode: countryCode,
+                          ),
+                        );
                   } else {
                     context.read<NewsBloc>().add(
-                      LoadTopHeadlinesForCategoryEvent(
-                        category: category.id,
-                        country: country,
-                      ),
-                    );
+                          LoadTopHeadlinesForCategoryEvent(
+                            category: category.id,
+                            countryCode: countryCode,
+                          ),
+                        );
                   }
-
                 },
               ),
             );

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/models/country.dart';
 
 class NavDrawer extends StatelessWidget {
-  final Function(String countryCode, String countryName) onTap;
+  final Function(Country country) onTap;
 
   const NavDrawer({
     Key? key,
@@ -54,13 +55,13 @@ class NavDrawer extends StatelessWidget {
           Expanded(
             child: ListView(
               padding: EdgeInsets.zero,
-              children: [
-                _countryItem(context, "ng", "Nigeria", onTap),
-                _countryItem(context, "gb", "United Kingdom", onTap),
-                _countryItem(context, "us", "United States", onTap),
-                _countryItem(context, "in", "India", onTap),
-                _countryItem(context, "za", "South Africa", onTap),
-              ],
+              children: Country.countries
+                  .map((country) => _countryItem(
+                        context,
+                        country,
+                        onTap,
+                      ))
+                  .toList(),
             ),
           )
         ],
@@ -68,21 +69,25 @@ class NavDrawer extends StatelessWidget {
     );
   }
 
-  Widget _countryItem(BuildContext context, String code, String name, Function(String, String) onTap) {
+  Widget _countryItem(
+    BuildContext context,
+    Country country,
+    Function(Country) onTap,
+  ) {
     return ListTile(
-      onTap: (){
-        onTap(code, name);
+      onTap: () {
+        onTap(country);
         Navigator.of(context).pop();
       },
       leading: SizedBox(
         width: 24,
         height: 24,
         child: Image.asset(
-          "icons/flags/png/$code.png",
+          "icons/flags/png/${country.code}.png",
           package: "country_icons",
         ),
       ),
-      title: Text(name),
+      title: Text(country.name),
     );
   }
 }

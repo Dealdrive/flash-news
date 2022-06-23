@@ -24,7 +24,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
     try {
       emit(const NewsState.loading());
       final Response response =
-          await apiService.getTopHeadlinesForCountry(event.country);
+          await apiService.getTopHeadlinesForCountry(event.countryCode);
       if (response.statusCode == 200) {
         final result = response.body;
         final jsonResult = json.decode(result) as Map<String, dynamic>;
@@ -51,7 +51,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
       emit(const NewsState.loading());
       final Response response = await apiService.getTopHeadlinesForCategory(
         category: event.category,
-        country: event.country,
+        country: event.countryCode,
       );
       if (response.statusCode == 200) {
         final result = response.body;
