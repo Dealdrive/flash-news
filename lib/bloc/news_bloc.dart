@@ -39,7 +39,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
         emit(NewsState.error(response.body));
       }
     } catch (e) {
-      emit(const NewsState.error("Error occurred"));
+      emit(const NewsState.error(null));
     }
   }
 
@@ -67,7 +67,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
         emit(NewsState.error(response.body));
       }
     } catch (e) {
-      emit(const NewsState.error("Error occurred"));
+      emit(const NewsState.error(null));
     }
   }
 
