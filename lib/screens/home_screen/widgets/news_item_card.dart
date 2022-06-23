@@ -59,8 +59,9 @@ class NewsItemCard extends StatelessWidget {
                   ),
                 ),
               ),
+              article.imageUrl != null ?
               CachedNetworkImage(
-                imageUrl: article.imageUrl ?? "",
+                imageUrl: article.imageUrl!,
                 fit: BoxFit.cover,
                 width: 120,
                 height: 120,
@@ -74,7 +75,7 @@ class NewsItemCard extends StatelessWidget {
                 errorWidget: (context, url, error) {
                   return const SizedBox.shrink();
                 },
-              )
+              ): const SizedBox.shrink()
             ],
           )),
     );

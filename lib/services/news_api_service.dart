@@ -5,8 +5,12 @@ import 'package:news_app/utils/constants.dart';
 
 class NewsApiService extends NewsApi {
   @override
-  Future getTopHeadlinesForCategory(String category) async {
-    final uri = Uri.parse("$baseUrl/top-headlines?category=$category");
+  Future getTopHeadlinesForCategory({
+    required String category,
+    required String country,
+  }) async {
+    final uri =
+        Uri.parse("$baseUrl/top-headlines?country=$country&category=$category");
     return await http.get(uri, headers: {"X-Api-Key": apiKey});
   }
 
@@ -17,7 +21,7 @@ class NewsApiService extends NewsApi {
   }
 
   @override
-  Future searchNews(String query) async{
+  Future searchNews(String query) async {
     final uri = Uri.parse("$baseUrl/everything?q=$query");
     return await http.get(uri, headers: {"X-Api-Key": apiKey});
   }

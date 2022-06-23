@@ -19,7 +19,8 @@ class LoadTopHeadlinesForCountryEvent extends NewsEvent {
 class LoadTopHeadlinesForCategoryEvent extends NewsEvent {
 
   final String category;
-  const LoadTopHeadlinesForCategoryEvent({required this.category});
+  final String country;
+  const LoadTopHeadlinesForCategoryEvent({required this.category, required this.country});
 }
 
 class SearchNewsEvent extends NewsEvent {

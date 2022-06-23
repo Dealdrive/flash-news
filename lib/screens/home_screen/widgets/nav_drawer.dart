@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class NavDrawer extends StatelessWidget {
-  final Function(String) onTap;
+  final Function(String countryCode, String countryName) onTap;
 
   const NavDrawer({
     Key? key,
@@ -68,10 +68,10 @@ class NavDrawer extends StatelessWidget {
     );
   }
 
-  Widget _countryItem(BuildContext context, String code, String name, Function(String) onTap) {
+  Widget _countryItem(BuildContext context, String code, String name, Function(String, String) onTap) {
     return ListTile(
       onTap: (){
-        onTap(code);
+        onTap(code, name);
         Navigator.of(context).pop();
       },
       leading: SizedBox(

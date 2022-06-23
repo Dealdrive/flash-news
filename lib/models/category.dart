@@ -17,7 +17,7 @@ class Category {
     Category(
       name: "Top Headlines",
       icon: Icons.newspaper,
-      backgroundColor: Colors.redAccent.shade200,
+      backgroundColor: Colors.blueGrey,
       id: "top-headlines",
     ),
     Category(

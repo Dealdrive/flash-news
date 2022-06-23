@@ -23,10 +23,8 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
   ) async {
     try {
       emit(const NewsState.loading());
-      print("Emitted loading");
       final Response response =
           await apiService.getTopHeadlinesForCountry(event.country);
-      print("Response received");
       if (response.statusCode == 200) {
         final result = response.body;
         final jsonResult = json.decode(result) as Map<String, dynamic>;
@@ -48,7 +46,30 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
   void _loadTopHeadlinesForCategoryEvent(
     LoadTopHeadlinesForCategoryEvent event,
     Emitter<NewsState> emit,
-  ) {}
+  ) async {
+    try {
+      emit(const NewsState.loading());
+      final Response response = await apiService.getTopHeadlinesForCategory(
+        category: event.category,
+        country: event.country,
+      );
+      if (response.statusCode == 200) {
+        final result = response.body;
+        final jsonResult = json.decode(result) as Map<String, dynamic>;
+        final articleList = jsonResult["articles"] as List<dynamic>;
+        final articles = articleList
+            .map(
+              (item) => Article.fromJson(item),
+            )
+            .toList();
+        emit(NewsState.success(articles));
+      } else {
+        emit(NewsState.error(response.body));
+      }
+    } catch (e) {
+      emit(const NewsState.error("Error occurred"));
+    }
+  }
 
   void _searchNewsEvent(
     SearchNewsEvent event,
