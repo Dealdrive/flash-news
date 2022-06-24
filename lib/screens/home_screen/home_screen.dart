@@ -47,11 +47,11 @@ class HomeScreen extends HookWidget {
           title: showExpandedSearchBar.value
               ? _searchBar(
                   searchController: searchController,
-                  onEditingComplete: () {
-                    final query = searchController.text;
+                  onSubmitted: (value) {
+                    final query = searchController.text.trim();
+                    searchController.clear();
                     showExpandedSearchBar.value = false;
-                    if(query.trim().isNotEmpty) {
-                      searchController.clear();
+                    if(query.isNotEmpty) {
 
                       context.read<SearchNewsBloc>().add(
                         GetSearchedNewsEvent(query: query),
@@ -86,6 +86,7 @@ class HomeScreen extends HookWidget {
             showExpandedSearchBar.value
                 ? IconButton(
                     onPressed: () {
+                      searchController.clear();
                       showExpandedSearchBar.value = false;
                     },
                     icon: const Icon(Icons.close),
@@ -138,14 +139,14 @@ class HomeScreen extends HookWidget {
 
   TextField _searchBar(
       {required TextEditingController searchController,
-      required Function() onEditingComplete}) {
+      required Function(String) onSubmitted}) {
     return TextField(
       controller: searchController,
       enableSuggestions: true,
       maxLines: 1,
       keyboardType: TextInputType.text,
       textInputAction: TextInputAction.search,
-      onEditingComplete: onEditingComplete,
+      onSubmitted: onSubmitted,
       autofocus: true,
       style: const TextStyle(color: Colors.white),
       cursorColor: Colors.white,
