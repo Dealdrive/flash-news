@@ -21,14 +21,17 @@ class WebViewScreen extends HookWidget {
     final isPageLoading = useState(true);
     return Scaffold(
         appBar: AppBar(
+          toolbarHeight: 60,
+          titleSpacing: 2.0,
           title: Column(
             children: [
               Text(
                 title,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(fontSize: 14),
+                style: const TextStyle(fontSize: 13),
               ),
+              const SizedBox(height: 2),
               Text(
                 pageUrl,
                 maxLines: 1,
@@ -42,6 +45,7 @@ class WebViewScreen extends HookWidget {
           children: [
             WebView(
               initialUrl: pageUrl,
+              javascriptMode: JavascriptMode.unrestricted,
               onPageFinished: (value) {
                 isPageLoading.value = false;
               },
