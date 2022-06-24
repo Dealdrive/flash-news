@@ -9,3 +9,4 @@ abstract class NewsState with _$NewsState {
   const factory NewsState.success(List<Article> articles) = _success;
   const factory NewsState.error(String? errorMessage) = _error;
 }
+

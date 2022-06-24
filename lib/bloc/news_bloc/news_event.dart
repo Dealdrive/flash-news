@@ -5,7 +5,6 @@ abstract class NewsEvent {
   const NewsEvent();
 }
 
-class LoadingEvent extends NewsEvent {}
 
 class LoadTopHeadlinesForCountryEvent extends NewsEvent {
   final String countryCode;
@@ -23,8 +22,3 @@ class LoadTopHeadlinesForCategoryEvent extends NewsEvent {
   });
 }
 
-class SearchNewsEvent extends NewsEvent {
-  final String query;
-
-  const SearchNewsEvent({required this.query});
-}

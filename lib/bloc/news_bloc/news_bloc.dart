@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:http/http.dart';
-import 'package:news_app/bloc/news_event.dart';
-import 'package:news_app/bloc/news_state.dart';
+import 'package:news_app/bloc/news_bloc/news_state.dart';
 import 'package:news_app/models/article.dart';
 import 'package:news_app/services/news_api.dart';
 import 'dart:convert';
+import 'news_event.dart';
 
 class NewsBloc extends Bloc<NewsEvent, NewsState> {
   final NewsApi apiService;
@@ -14,7 +14,6 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
 
     on<LoadTopHeadlinesForCategoryEvent>(_loadTopHeadlinesForCategoryEvent);
 
-    on<SearchNewsEvent>(_searchNewsEvent);
   }
 
   void _loadTopHeadlinesForCountryEvent(
@@ -36,7 +35,8 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
             .toList();
         emit(NewsState.success(articles));
       } else {
-        emit(NewsState.error(response.body));
+        final errorResponse = json.decode(response.body) as Map<String, dynamic>;
+        emit(NewsState.error(errorResponse["message"]));
       }
     } catch (e) {
       emit(const NewsState.error(null));
@@ -64,15 +64,13 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
             .toList();
         emit(NewsState.success(articles));
       } else {
-        emit(NewsState.error(response.body));
+        final errorResponse = json.decode(response.body) as Map<String, dynamic>;
+        emit(NewsState.error(errorResponse["message"]));
       }
     } catch (e) {
       emit(const NewsState.error(null));
     }
   }
 
-  void _searchNewsEvent(
-    SearchNewsEvent event,
-    Emitter<NewsState> emit,
-  ) {}
+
 }

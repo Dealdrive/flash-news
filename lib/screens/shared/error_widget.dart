@@ -29,12 +29,15 @@ class ErrorWidget extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            Text(
-              "Error Occurred! \n${errorMessage ?? ''}",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Theme.of(context).primaryColor,
-                fontSize: 20,
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Text(
+                "Error Occurred! \n${errorMessage ?? ''}",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                  fontSize: 20,
+                ),
               ),
             ),
           ],

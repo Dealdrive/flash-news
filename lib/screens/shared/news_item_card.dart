@@ -49,6 +49,8 @@ class NewsItemCard extends StatelessWidget {
                         padding: const EdgeInsets.all(4),
                         child: Text(
                           article.source.name ?? "",
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
                             fontSize: 12,
                             color: Colors.white,
