@@ -9,7 +9,8 @@ import 'package:news_app/bloc/search_news_bloc/search_news_event.dart';
 import 'package:news_app/models/country.dart';
 import 'package:news_app/screens/home_screen/widgets/nav_drawer.dart';
 import 'package:news_app/screens/search_screen/search_screen.dart';
-import '../shared/error_widget.dart' as error;
+import 'package:news_app/screens/shared/no_results_widget.dart';
+import '../shared/loading_error_widget.dart' as error;
 import '../../models/category.dart';
 import 'widgets/category_chips.dart';
 import '../shared/news_item_card.dart';
@@ -52,7 +53,6 @@ class HomeScreen extends HookWidget {
                     searchController.clear();
                     showExpandedSearchBar.value = false;
                     if(query.isNotEmpty) {
-
                       context.read<SearchNewsBloc>().add(
                         GetSearchedNewsEvent(query: query),
                       );
@@ -115,17 +115,22 @@ class HomeScreen extends HookWidget {
                       ),
                     ),
                     success: (articles) {
-                      return ListView.builder(
-                          itemCount: articles.length,
-                          shrinkWrap: true,
-                          padding: const EdgeInsets.only(top: 8.0),
-                          itemBuilder: (context, index) {
-                            final article = articles[index];
-                            return NewsItemCard(article: article);
-                          });
+                      if (articles.isNotEmpty) {
+                        return ListView.builder(
+                            itemCount: articles.length,
+                            shrinkWrap: true,
+                            padding: const EdgeInsets.only(top: 8.0),
+                            itemBuilder: (context, index) {
+                              final article = articles[index];
+                              return NewsItemCard(article: article);
+                            });
+                      }
+                      else {
+                        return const NoResultWidget();
+                      }
                     },
                     error: (errorMessage) {
-                      return error.ErrorWidget(
+                      return error.LoadingErrorWidget(
                         errorMessage: errorMessage,
                       );
                     },

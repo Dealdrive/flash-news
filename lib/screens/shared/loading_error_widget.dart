@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class ErrorWidget extends StatelessWidget {
+class LoadingErrorWidget extends StatelessWidget {
   final String? errorMessage;
 
-  const ErrorWidget({
+  const LoadingErrorWidget({
     Key? key,
     this.errorMessage,
   }) : super(key: key);
@@ -16,17 +16,10 @@ class ErrorWidget extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CircleAvatar(
-              backgroundColor: Colors.red.shade800,
-              radius: 80,
-              child: CircleAvatar(
-                backgroundColor: Colors.red.shade600,
-                radius: 65,
-                child: CircleAvatar(
-                  backgroundColor: Theme.of(context).primaryColor,
-                  radius: 50,
-                ),
-              ),
+            Icon(
+              Icons.error_outline_outlined,
+              size: 80,
+              color: Theme.of(context).primaryColor,
             ),
             const SizedBox(height: 10),
             Padding(

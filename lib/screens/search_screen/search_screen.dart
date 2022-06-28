@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/bloc/search_news_bloc/search_news_bloc.dart';
 import 'package:news_app/bloc/search_news_bloc/search_news_state.dart';
 import 'package:news_app/screens/shared/news_item_card.dart';
-import '../shared/error_widget.dart' as error;
+import 'package:news_app/screens/shared/no_results_widget.dart';
+import '../shared/loading_error_widget.dart' as error;
 
 class SearchScreen extends StatelessWidget {
   static const String routeName = "/search-screen";
@@ -32,17 +33,21 @@ class SearchScreen extends StatelessWidget {
               ),
             ),
             success: (articles) {
-              return ListView.builder(
-                  itemCount: articles.length,
-                  shrinkWrap: true,
-                  padding: const EdgeInsets.only(top: 8.0),
-                  itemBuilder: (context, index) {
-                    final article = articles[index];
-                    return NewsItemCard(article: article);
-                  });
+              if (articles.isNotEmpty) {
+                return ListView.builder(
+                    itemCount: articles.length,
+                    shrinkWrap: true,
+                    padding: const EdgeInsets.only(top: 8.0),
+                    itemBuilder: (context, index) {
+                      final article = articles[index];
+                      return NewsItemCard(article: article);
+                    });
+              } else {
+                return const NoResultWidget();
+              }
             },
             error: (errorMessage) {
-              return error.ErrorWidget(
+              return error.LoadingErrorWidget(
                 errorMessage: errorMessage,
               );
             },
