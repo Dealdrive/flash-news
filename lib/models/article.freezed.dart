@@ -25,6 +25,8 @@ mixin _$Article {
   String get url => throw _privateConstructorUsedError;
   @JsonKey(name: "urlToImage")
   String? get imageUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: "publishedAt")
+  String get timePublished => throw _privateConstructorUsedError;
   Source get source => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,6 +43,7 @@ abstract class $ArticleCopyWith<$Res> {
       String? title,
       String url,
       @JsonKey(name: "urlToImage") String? imageUrl,
+      @JsonKey(name: "publishedAt") String timePublished,
       Source source});
 
   $SourceCopyWith<$Res> get source;
@@ -60,6 +63,7 @@ class _$ArticleCopyWithImpl<$Res> implements $ArticleCopyWith<$Res> {
     Object? title = freezed,
     Object? url = freezed,
     Object? imageUrl = freezed,
+    Object? timePublished = freezed,
     Object? source = freezed,
   }) {
     return _then(_value.copyWith(
@@ -79,6 +83,10 @@ class _$ArticleCopyWithImpl<$Res> implements $ArticleCopyWith<$Res> {
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      timePublished: timePublished == freezed
+          ? _value.timePublished
+          : timePublished // ignore: cast_nullable_to_non_nullable
+              as String,
       source: source == freezed
           ? _value.source
           : source // ignore: cast_nullable_to_non_nullable
@@ -105,6 +113,7 @@ abstract class _$$_ArticleCopyWith<$Res> implements $ArticleCopyWith<$Res> {
       String? title,
       String url,
       @JsonKey(name: "urlToImage") String? imageUrl,
+      @JsonKey(name: "publishedAt") String timePublished,
       Source source});
 
   @override
@@ -126,6 +135,7 @@ class __$$_ArticleCopyWithImpl<$Res> extends _$ArticleCopyWithImpl<$Res>
     Object? title = freezed,
     Object? url = freezed,
     Object? imageUrl = freezed,
+    Object? timePublished = freezed,
     Object? source = freezed,
   }) {
     return _then(_$_Article(
@@ -145,6 +155,10 @@ class __$$_ArticleCopyWithImpl<$Res> extends _$ArticleCopyWithImpl<$Res>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      timePublished: timePublished == freezed
+          ? _value.timePublished
+          : timePublished // ignore: cast_nullable_to_non_nullable
+              as String,
       source: source == freezed
           ? _value.source
           : source // ignore: cast_nullable_to_non_nullable
@@ -161,6 +175,7 @@ class _$_Article implements _Article {
       this.title,
       required this.url,
       @JsonKey(name: "urlToImage") this.imageUrl,
+      @JsonKey(name: "publishedAt") required this.timePublished,
       required this.source});
 
   factory _$_Article.fromJson(Map<String, dynamic> json) =>
@@ -176,11 +191,14 @@ class _$_Article implements _Article {
   @JsonKey(name: "urlToImage")
   final String? imageUrl;
   @override
+  @JsonKey(name: "publishedAt")
+  final String timePublished;
+  @override
   final Source source;
 
   @override
   String toString() {
-    return 'Article(author: $author, title: $title, url: $url, imageUrl: $imageUrl, source: $source)';
+    return 'Article(author: $author, title: $title, url: $url, imageUrl: $imageUrl, timePublished: $timePublished, source: $source)';
   }
 
   @override
@@ -192,6 +210,8 @@ class _$_Article implements _Article {
             const DeepCollectionEquality().equals(other.title, title) &&
             const DeepCollectionEquality().equals(other.url, url) &&
             const DeepCollectionEquality().equals(other.imageUrl, imageUrl) &&
+            const DeepCollectionEquality()
+                .equals(other.timePublished, timePublished) &&
             const DeepCollectionEquality().equals(other.source, source));
   }
 
@@ -203,6 +223,7 @@ class _$_Article implements _Article {
       const DeepCollectionEquality().hash(title),
       const DeepCollectionEquality().hash(url),
       const DeepCollectionEquality().hash(imageUrl),
+      const DeepCollectionEquality().hash(timePublished),
       const DeepCollectionEquality().hash(source));
 
   @JsonKey(ignore: true)
@@ -222,6 +243,7 @@ abstract class _Article implements Article {
       final String? title,
       required final String url,
       @JsonKey(name: "urlToImage") final String? imageUrl,
+      @JsonKey(name: "publishedAt") required final String timePublished,
       required final Source source}) = _$_Article;
 
   factory _Article.fromJson(Map<String, dynamic> json) = _$_Article.fromJson;
@@ -235,6 +257,9 @@ abstract class _Article implements Article {
   @override
   @JsonKey(name: "urlToImage")
   String? get imageUrl => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: "publishedAt")
+  String get timePublished => throw _privateConstructorUsedError;
   @override
   Source get source => throw _privateConstructorUsedError;
   @override

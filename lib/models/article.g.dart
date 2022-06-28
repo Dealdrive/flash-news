@@ -11,6 +11,7 @@ _$_Article _$$_ArticleFromJson(Map<String, dynamic> json) => _$_Article(
       title: json['title'] as String?,
       url: json['url'] as String,
       imageUrl: json['urlToImage'] as String?,
+      timePublished: json['publishedAt'] as String,
       source: Source.fromJson(json['source'] as Map<String, dynamic>),
     );
 
@@ -20,6 +21,7 @@ Map<String, dynamic> _$$_ArticleToJson(_$_Article instance) =>
       'title': instance.title,
       'url': instance.url,
       'urlToImage': instance.imageUrl,
+      'publishedAt': instance.timePublished,
       'source': instance.source,
     };
 

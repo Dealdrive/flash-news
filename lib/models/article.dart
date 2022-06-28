@@ -6,16 +6,20 @@ part 'article.g.dart';
 @freezed
 class Article with _$Article {
 
+
   const factory Article({
     final String? author,
     final String? title,
     required final String url,
     @JsonKey(name: "urlToImage")
     final String? imageUrl,
+    @JsonKey(name: "publishedAt")
+    required final String timePublished,
     required final Source source,
   }) = _Article;
 
   factory Article.fromJson(Map<String, dynamic> json) => _$ArticleFromJson(json);
+
 
 }
 

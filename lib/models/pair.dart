@@ -1,11 +1,11 @@
 
 
-class Tuple<S, T> {
+class Pair<S, T> {
 
   final S _first;
   final T _second;
 
-  Tuple(this._first, this._second);
+  Pair(this._first, this._second);
 
   S get first => _first;
 

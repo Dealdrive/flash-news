@@ -24,6 +24,7 @@ class WebViewScreen extends HookWidget {
           toolbarHeight: 60,
           titleSpacing: 2.0,
           title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 title,
@@ -45,7 +46,7 @@ class WebViewScreen extends HookWidget {
           children: [
             WebView(
               initialUrl: pageUrl,
-              javascriptMode: JavascriptMode.unrestricted,
+              //javascriptMode: JavascriptMode.values[0],
               onPageFinished: (value) {
                 isPageLoading.value = false;
               },

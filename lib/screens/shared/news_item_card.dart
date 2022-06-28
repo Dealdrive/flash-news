@@ -1,8 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/models/article.dart';
-import 'package:news_app/models/tuple.dart';
+import 'package:news_app/models/pair.dart';
 import 'package:news_app/screens/webview_screen/webview_screen.dart';
+import 'package:news_app/utils/format_time.dart';
 
 class NewsItemCard extends StatelessWidget {
   const NewsItemCard({
@@ -18,7 +19,7 @@ class NewsItemCard extends StatelessWidget {
       onTap: () {
         Navigator.of(context).pushNamed(
           WebViewScreen.routeName,
-          arguments: Tuple(article.title, article.url),
+          arguments: Pair(article.title, article.url),
         );
       },
       child: Container(
@@ -47,25 +48,42 @@ class NewsItemCard extends StatelessWidget {
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold),
+                              fontSize: 15, fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(height: 10),
-                        Container(
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).primaryColor,
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          padding: const EdgeInsets.all(4),
-                          child: Text(
-                            article.source.name ?? "",
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(
-                              fontSize: 12,
-                              color: Colors.white,
+                        Row(
+                          children: [
+                            Text(
+                              formatToRelativeTime(article.timePublished),
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.black.withOpacity(0.5)
+                              ),
                             ),
-                          ),
-                        ),
+                            const SizedBox(
+                                height: 12,
+                                child: VerticalDivider(
+                                  thickness: 1,
+                                )),
+                            Container(
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).primaryColor,
+                                borderRadius: BorderRadius.circular(2),
+                              ),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 6, vertical: 1),
+                              child: Text(
+                                article.source.name ?? "",
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                  fontSize: 13,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
                       ],
                     ),
                   ),
