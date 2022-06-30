@@ -56,30 +56,36 @@ class NewsItemCard extends StatelessWidget {
                             Text(
                               formatToRelativeTime(article.timePublished),
                               style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.black.withOpacity(0.5)
-                              ),
+                                  fontSize: 14,
+                                  color: Colors.black.withOpacity(0.5)),
                             ),
                             const SizedBox(
-                                height: 12,
-                                child: VerticalDivider(
-                                  thickness: 1,
-                                )),
-                            Container(
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).primaryColor,
-                                borderRadius: BorderRadius.circular(2),
+                              height: 12,
+                              child: VerticalDivider(
+                                thickness: 1,
                               ),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 6, vertical: 1),
-                              child: Text(
-                                article.source.name ?? "",
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                  fontSize: 13,
-                                  color: Colors.white,
-                                ),
+                            ),
+                            Expanded(
+                              child: Wrap(
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      color: Theme.of(context).primaryColor,
+                                      borderRadius: BorderRadius.circular(2),
+                                    ),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 6, vertical: 1),
+                                    child: Text(
+                                      article.source.name ?? "",
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                        fontSize: 13,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ],

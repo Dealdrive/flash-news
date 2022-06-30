@@ -10,6 +10,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
   final NewsApi apiService;
 
   NewsBloc(this.apiService) : super(const NewsState.loading()) {
+
     on<LoadTopHeadlinesForCountryEvent>(_loadTopHeadlinesForCountryEvent);
 
     on<LoadTopHeadlinesForCategoryEvent>(_loadTopHeadlinesForCategoryEvent);
@@ -71,6 +72,4 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
       emit(const NewsState.error(null));
     }
   }
-
-
 }
