@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:news_app/bloc/news_bloc/news_bloc.dart';
 import 'package:news_app/bloc/news_bloc/news_event.dart';
 import 'package:news_app/config/app_router.dart';
