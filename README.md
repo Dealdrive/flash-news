@@ -19,6 +19,6 @@ Flutter Localizations for localization
 <img src="https://github.com/nzikak/News-App/blob/main/screenshots/Screenshot3.jpg" width=250 alt="Search bar" />  
   
   
-<img src="https://github.com/nzikak/News-App/blob/main/screenshots/Screenshot4.jpg" width=250 alt="Search results"/>&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><img src="https://github.com/nzikak/News-App/blob/main/screenshots/Screenshot4.jpg" width=250 alt="Search results"/>&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="https://github.com/nzikak/News-App/blob/main/screenshots/Screenshot5.jpg" width=250 alt="Webview" />&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="https://github.com/nzikak/News-App/blob/main/screenshots/Screenshot6.jpg" width=250 alt="Top Entertainment headlines in the USA" />  
