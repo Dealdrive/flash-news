@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/bloc/news_bloc/news_bloc.dart';
 import 'package:news_app/bloc/news_bloc/news_event.dart';
 import 'package:news_app/models/category.dart';
+import 'package:news_app/utils/localized_category.dart';
 
 class CategoryChips extends StatelessWidget {
   const CategoryChips({
@@ -26,7 +27,7 @@ class CategoryChips extends StatelessWidget {
               padding: const EdgeInsets.only(right: 10.0),
               child: ActionChip(
                 label: Text(
-                  category.name,
+                  getLocalizedCategoryName(context, category.name),
                   style: const TextStyle(
                     color: Colors.white,
                   ),

@@ -4,6 +4,7 @@ import 'package:news_app/bloc/search_news_bloc/search_news_bloc.dart';
 import 'package:news_app/bloc/search_news_bloc/search_news_state.dart';
 import 'package:news_app/screens/shared/news_item_card.dart';
 import 'package:news_app/screens/shared/no_results_widget.dart';
+import 'package:news_app/utils/build_context_ext.dart';
 import '../shared/loading_error_widget.dart' as error;
 
 class SearchScreen extends StatelessWidget {
@@ -20,9 +21,10 @@ class SearchScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Search results for $searchQuery",
-          style: const TextStyle(fontSize: 17),
+          "${context.localizations.search_result_title} $searchQuery",
+          style: const TextStyle(fontSize: 16),
         ),
+        titleSpacing: 2.0,
       ),
       body: BlocBuilder<SearchNewsBloc, SearchNewsState>(
         builder: (context, state) {

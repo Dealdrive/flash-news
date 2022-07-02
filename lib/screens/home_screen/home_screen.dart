@@ -10,6 +10,8 @@ import 'package:news_app/models/country.dart';
 import 'package:news_app/screens/home_screen/widgets/nav_drawer.dart';
 import 'package:news_app/screens/search_screen/search_screen.dart';
 import 'package:news_app/screens/shared/no_results_widget.dart';
+import 'package:news_app/utils/build_context_ext.dart';
+import 'package:news_app/utils/localized_category.dart';
 import '../shared/loading_error_widget.dart' as error;
 import '../../models/category.dart';
 import 'widgets/category_chips.dart';
@@ -48,14 +50,15 @@ class HomeScreen extends HookWidget {
           title: showExpandedSearchBar.value
               ? _searchBar(
                   searchController: searchController,
+                  context: context,
                   onSubmitted: (value) {
                     final query = searchController.text.trim();
                     searchController.clear();
                     showExpandedSearchBar.value = false;
-                    if(query.isNotEmpty) {
+                    if (query.isNotEmpty) {
                       context.read<SearchNewsBloc>().add(
-                        GetSearchedNewsEvent(query: query),
-                      );
+                            GetSearchedNewsEvent(query: query),
+                          );
                       Navigator.of(context).pushNamed(
                         SearchScreen.routeName,
                         arguments: query,
@@ -65,17 +68,20 @@ class HomeScreen extends HookWidget {
                 )
               : selectedCategory.value == Category.categories[0]
                   ? Text(
-                      "Top Headlines in ${selectedCountry.value.name}",
+                      "${context.localizations.top_headlines_in} ${selectedCountry.value.name}",
                       style: const TextStyle(fontSize: 17),
                     )
                   : Column(
                       children: [
                         Text(
-                          "Top Headlines in ${selectedCountry.value.name}",
+                          "${context.localizations.top_headlines_in} ${selectedCountry.value.name}",
                           style: const TextStyle(fontSize: 16),
                         ),
                         Text(
-                          selectedCategory.value.name,
+                          getLocalizedCategoryName(
+                            context,
+                            selectedCategory.value.name,
+                          ),
                           style: const TextStyle(
                               fontSize: 14, fontWeight: FontWeight.normal),
                         ),
@@ -124,8 +130,7 @@ class HomeScreen extends HookWidget {
                               final article = articles[index];
                               return NewsItemCard(article: article);
                             });
-                      }
-                      else {
+                      } else {
                         return const NoResultWidget();
                       }
                     },
@@ -144,6 +149,7 @@ class HomeScreen extends HookWidget {
 
   TextField _searchBar(
       {required TextEditingController searchController,
+      required BuildContext context,
       required Function(String) onSubmitted}) {
     return TextField(
       controller: searchController,
@@ -155,13 +161,13 @@ class HomeScreen extends HookWidget {
       autofocus: true,
       style: const TextStyle(color: Colors.white),
       cursorColor: Colors.white,
-      decoration: const InputDecoration(
-        hintText: "Search query...",
-        hintStyle: TextStyle(color: Colors.white),
-        enabledBorder: UnderlineInputBorder(
+      decoration: InputDecoration(
+        hintText: context.localizations.search_query,
+        hintStyle: const TextStyle(color: Colors.white),
+        enabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.white),
         ),
-        focusedBorder: UnderlineInputBorder(
+        focusedBorder: const UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.white),
         ),
       ),

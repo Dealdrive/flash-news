@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/utils/build_context_ext.dart';
 
 
 class NoResultWidget extends StatelessWidget {
@@ -17,7 +18,7 @@ class NoResultWidget extends StatelessWidget {
           ),
           const SizedBox(height: 8.0),
           Text(
-            "No Results found!",
+            context.localizations.no_result_message,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 24,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/utils/build_context_ext.dart';
 
 class LoadingErrorWidget extends StatelessWidget {
   final String? errorMessage;
@@ -25,7 +26,7 @@ class LoadingErrorWidget extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Text(
-                "Error Occurred! \n${errorMessage ?? ''}",
+                "${context.localizations.error_occurred_message}\n${errorMessage ?? ''}",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Theme.of(context).primaryColor,

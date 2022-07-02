@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/models/country.dart';
+import 'package:news_app/utils/build_context_ext.dart';
 
 class NavDrawer extends StatelessWidget {
   final Function(Country country) onTap;
@@ -44,11 +45,12 @@ class NavDrawer extends StatelessWidget {
           ),
           Container(
             color: Colors.grey.shade300,
-            child: const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
               child: Text(
-                "Headlines From",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
+                context.localizations.news_headlines_from,
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
               ),
             ),
           ),
