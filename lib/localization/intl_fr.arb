@@ -1,0 +1,17 @@
+{
+  "search_query": "Requête de recherche...",
+  "news_headlines_from": "Les titres de l'actualité de",
+  "top_headlines_in": "Grands Titres de l'actualité dans",
+  "sports": "Des sports",
+  "entertainment": "Divertissement",
+  "business": "Économie",
+  "science": "La science",
+  "technology": "Technologie",
+  "health": "Santé",
+
+  "error_occurred_message": "Erreur est survenue",
+
+  "search_result_title": "Résultats de recherche pour",
+
+  "no_result_message": "Aucun résultat trouvé!"
+}

@@ -8,8 +8,8 @@ import 'package:news_app/models/country.dart';
 import 'package:news_app/screens/home_screen/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/services/news_api_service.dart';
-
 import 'bloc/search_news_bloc/search_news_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async {
 
@@ -34,6 +34,8 @@ void main() async {
         child: MaterialApp(
           onGenerateRoute: AppRoute.onGenerateRoute,
           debugShowCheckedModeBanner: false,
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
           theme: ThemeData(
             primaryColor: Colors.redAccent,
             appBarTheme: const AppBarTheme(

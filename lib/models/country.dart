@@ -17,7 +17,7 @@ class Country {
       code: "gb",
     ),
     Country(
-      name: "United States",
+      name: "USA",
       code: "us",
     ),
     Country(

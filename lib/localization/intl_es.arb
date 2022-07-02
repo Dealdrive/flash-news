@@ -1,0 +1,19 @@
+{
+  "search_query": "Consulta de busqueda...",
+  "news_headlines_from": "Titulares de noticias de",
+  "top_headlines_in": "Titulares Principales en",
+
+
+  "sports": "Deportes",
+  "entertainment": "Entretenimiento",
+  "business": "Economía",
+  "science": "Ciencias",
+  "technology": "Tecnología",
+  "health": "Salud",
+
+  "error_occurred_message": "Se produjo un error",
+
+  "search_result_title": "Resultados de la búsqueda de",
+
+  "no_result_message": "¡No se han encontrado resultados!"
+}
